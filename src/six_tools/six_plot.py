@@ -16,7 +16,7 @@ from ipywidgets import (HBox, VBox, FloatSlider, IntSlider, SelectionSlider,Layo
 from ipywidgets.widgets import Dropdown
 
 from IPython.display import display
-from Loc_Funcs import *
+from six_tools.Loc_Funcs import *
 
 
 ##############################################################################################
