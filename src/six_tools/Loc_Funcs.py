@@ -268,12 +268,17 @@ def scan_data(scan,meta=None):
                      'extslt_vg': 'slit_v', 'extslt_hg': 'slit_h', 'ring_curr': 'ring_curr'} # 'cryo_x': 'x', 'cryo_y': 'y', 'cryo_z': 'z',
 
         #######################################################################
+        # Preload expensive metadata
+        run_table = run.table(stream_name="baseline")
+        run_keys = run_table.columns
+
+        #######################################################################
         for meta_key in (meta):
             if meta_key in run.start['motors']:
                 pass
             else:
-                if meta_key in run.table(stream_name="baseline").columns:
-                    meta_data = run.table(stream_name="baseline")[meta_key]
+                if meta_key in run_keys:
+                    meta_data = run_table[meta_key]
                     if meta_key in meta_name.keys():
                         if meta_key == 'epu1_phase_readback':
                             pol_val = meta_data.mean(axis=0)
